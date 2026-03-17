@@ -19,5 +19,11 @@ python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 
-Baixando modelo:
-ollama pull nomid-embed-text
+docker compose up -d
+
+Downloading model:
+sudo snap install ollama
+ollama pull nomic-embed-text
+
+Running api:
+uvicorn app.main:app --reload
