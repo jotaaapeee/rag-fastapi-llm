@@ -12,3 +12,12 @@ SImple Retrieval-Augmented Generation API using:
 Archtecture:
 
 User Question -> Embedding -> Vector Search -> COntext -> LLM -> Answer
+
+## How to run 
+
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+
+Baixando modelo:
+ollama pull nomid-embed-text
