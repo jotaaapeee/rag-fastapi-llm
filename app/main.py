@@ -1,5 +1,6 @@
 from fastapi import FastAPI
-from rag import ask_rag
+# from rag import ask_rag
+from app.rag import ask_rag
 
 app = FastAPI()
 
@@ -9,6 +10,7 @@ def root():
 
 @app.post("/ask")
 def ask(question: str):
+    # print(question)
 
     answer = ask_rag(question)
 

@@ -1,6 +1,6 @@
 import psycopg2
 import ollama
-from embeddings import get_embedding
+from app.embeddings import get_embedding
 
 conn = psycopg2.connect(
     dbname="rag",
@@ -15,12 +15,14 @@ def search_docs(query):
 
     cur = conn.cursor()
 
+    emb_str = "[" + ",".join(map(str, emb)) + "]"
+
     cur.execute("""
         SELECT content
         FROM documents
-        ORDER BY embedding <-> %s
+        ORDER BY embedding <-> %s::vector
         LIMIT 3
-    """, (emb,))
+    """, (emb_str,))
 
     results = cur.fetchall()
 
@@ -42,7 +44,7 @@ def ask_rag(question):
     """
 
     response = ollama.chat(
-        model="llama3",
+        model="llama3.2",
         messages=[{"role": "user", "content": prompt}]
     )
 
