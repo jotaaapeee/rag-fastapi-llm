@@ -27,6 +27,7 @@ python app/ingest.py
 Downloading model:
 sudo snap install ollama
 ollama pull nomic-embed-text
+ollama pull llama3.2s
 
 Running api:
 uvicorn app.main:app --reload
